@@ -5,22 +5,6 @@ const { createProductSchema } = require("../validator/admin-validator");
 
 exports.createProduct = async (req, res, next) => {
   try {
-    // รับค่าเพื่อสร้าง product
-    // สร้าง product
-    // สร้าง images -> เชื่อมกับ product ที่สร้างขึ้น
-
-    // const {
-    //   priceHigh,
-    //   minPriceHigh,
-    //   detail,
-    //   width,
-    //   height,
-    //   depth,
-    //   weight,
-    //   brandId,
-    //   categoryId,
-    // } = req.body;
-
     const value = await createProductSchema.validateAsync(req.body);
 
     const { brandId, categoryId } = req.body;
@@ -71,10 +55,6 @@ exports.createProduct = async (req, res, next) => {
         product_imgs: true,
       },
     });
-
-    // const productImages = await prisma.product_Img.createMany({
-    //   data: [{productId, url: imgUrl}],
-    // });
 
     res.json({ newProduct });
   } catch (err) {
